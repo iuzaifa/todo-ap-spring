@@ -3,11 +3,8 @@ package com.example.SpringAuthentication.dto;
 import lombok.Data;
 
 @Data
-public class UserRequest {
+public class RegisterResponse {
 
-
-
-
-
+    private String username;
 
 }
