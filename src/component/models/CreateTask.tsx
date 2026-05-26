@@ -99,21 +99,21 @@ export const CreateTaskModel = ({ onClose }: CreateTaskProps) => {
                     <label className="text-nowrap w-48">Priority</label>
                     <select
                             name="priority"
-                            value={addNewTask.priority}
                             onChange={handleChange}
                             className="border border-slate-200 w-full text-sm p-2.5 outline-emerald-600 ">
+                        <option value="">Select Priority</option>
                         <option value="LOW">Low</option>
                         <option value="MEDIUM">Medium</option>
                         <option value="HIGH">High</option>
                     </select>
                     
-                    <label className="text-nowrap w-72">Current Task </label>
+                    <label className="text-nowrap w-72"> Status </label>
                      <select
                         name="status"
-                        value={addNewTask.status}
                         onChange={handleChange}
                         className="border border-slate-200 w-full text-sm p-2.5 outline-emerald-600 "
                         >
+                            <option value="">Select Status</option>
                             <option value="PENDING">Pending</option>
                             <option value="ACTIVE">Active</option>
                             <option value="COMPLETED">Completed</option>
