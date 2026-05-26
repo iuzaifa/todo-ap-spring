@@ -5,18 +5,23 @@ import {
 } from "react-icons/md";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import {useState, useEffect} from "react"
-import {getAllTasks} from "../utils/taskApi"
+import {getAllTasks, deleteTaskApi} from "../utils/taskApi"
 import  type {TaskResponse} from "../utils/taskApi"
 import { AxiosError } from "axios";
 import { LuCalendarClock } from "react-icons/lu";
 import { CreateTaskModel } from "../component/models/CreateTask";
+import { FaRegEdit } from "react-icons/fa";
+import { MdOutlineDelete } from "react-icons/md";
+import {toast} from "react-toastify"
+
+
 
 
 const MyBoard = () => {
   const [tasks, setTasks] = useState<TaskResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [openModel, setOpenModel] = useState<boolean>(false);
-
+  const [isOpenDropdown, setIsOpenDropdown ] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -36,9 +41,20 @@ const MyBoard = () => {
     
     fetchTasks();
   }, []);
+
+
+    const handleDelete = async (id: number) => {
+      try {
+        await deleteTaskApi(id);
+        setTasks((prev) => prev.filter((task) => task.id !== id));
+        toast.success("Task deleted");
+      } catch (error) {
+        toast.error("Delete failed" + error); 
+      }
+    };
   return (
     <>
-      <div className="bg-slate-100 p-6 h-screen">
+      <div className="bg-slate-100 p-6 h-screen " >
       {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
@@ -83,9 +99,38 @@ const MyBoard = () => {
                   </p>
                 </div>
 
-                <button className="text-slate-500 hover:text-slate-900">
-                  <MdMoreHoriz size={22} />
-                </button>
+                <div className="relative inline-block">
+                  <button
+                    onClick={() =>
+                      setIsOpenDropdown(isOpenDropdown === task.id ? null : task.id)
+                    }
+                    className="text-slate-500 hover:text-slate-900"
+                  >
+                    <MdMoreHoriz size={22} />
+                  </button>
+
+                  {/* Dropdown */}
+                  {isOpenDropdown === task.id && (
+                    <div className="absolute right-0 mt-2 overflow-hidden rounded-md border border-slate-100 bg-white shadow-lg z-50">
+                      <button
+                        onClick={() => handleDelete(task.id)}
+                        className="w-full p-3 text-left text-red-600 hover:bg-red-50"
+                      >
+                        <MdOutlineDelete/>
+                      </button>
+
+                      <button
+                        onClick={() => setIsOpenDropdown(null)}
+                        className="w-full p-3 text-left text-blue-600 hover:bg-blue-50"
+                      >
+                        <FaRegEdit/>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+               
+      
               </div>
 
               {/* Status */}

@@ -48,3 +48,15 @@ export const createTaskApi = async ( taskData: CreateTask): Promise<CreateTask> 
 
   return response.data;
 };
+
+
+export const deleteTaskApi = async ( id: number): Promise<void> => {
+  const token = localStorage.getItem("token");
+  await api.delete<CreateTask>(`/tasks/delete/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
