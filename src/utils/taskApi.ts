@@ -2,12 +2,14 @@
 import api from "../api/api"; // your Axios instance
 
 
+ // priority: "LOW" | "MEDIUM" | "HIGH";
+  // status:  "PENDING"| "ACTIVE" | "COMPLETED" |  "NOT_INITIATED" | "READY_INITIATED" | "REJECTED";
 export interface TaskResponse {
   id: number;
   title: string;
   description: string;
-  priority: "LOW" | "MEDIUM" | "HIGH";
-  status:  "PENDING"| "ACTIVE" | "COMPLETED" |  "NOT_INITIATED" | "READY_INITIATED" | "REJECTED";
+  priority: string;
+  status: string;
   startDate: string; 
   endDate: string;
   active: boolean;
@@ -16,8 +18,10 @@ export interface TaskResponse {
 export interface CreateTask {
   title: string;
   description: string;
-  priority: "LOW" | "MEDIUM" | "HIGH";
-  status:  "PENDING"| "ACTIVE" | "COMPLETED" |  "NOT_INITIATED" | "READY_INITIATED" | "REJECTED";
+  priority: string;
+  status: string;
+  // priority: "LOW" | "MEDIUM" | "HIGH";
+  // status:  "PENDING"| "ACTIVE" | "COMPLETED" |  "NOT_INITIATED" | "READY_INITIATED" | "REJECTED";
   startDate: string; 
   endDate: string;
   active: boolean;
@@ -60,3 +64,15 @@ export const deleteTaskApi = async ( id: number): Promise<void> => {
     }
   );
 };
+
+export const updateTaskApi = async ( id: number): Promise<void> => {
+  const token = localStorage.getItem("token");
+  await api.delete<CreateTask>(`/tasks/delete/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+

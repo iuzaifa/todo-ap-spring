@@ -13,8 +13,8 @@ export const CreateTaskModel = ({ onClose }: CreateTaskProps) => {
     const [addNewTask, setAddNewTask] = useState<CreateTask>({
         title: "",
         description: "",
-        priority: "LOW",
-        status: "PENDING",
+        priority: "",
+        status: "",
         startDate: "",
         endDate: "",
         active: false,
@@ -50,6 +50,7 @@ export const CreateTaskModel = ({ onClose }: CreateTaskProps) => {
             toast.error("End date must be after start date");
             return;
         }
+        
 
         // Priority & Status validation
         if (!addNewTask.priority) {
