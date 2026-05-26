@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import {loginUser} from "../utils/utils.ts"
+import { loginUser } from "../utils/utils.ts"
 import { toast } from "react-toastify"
 
 
@@ -18,11 +18,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const result = await loginUser(form);
-      // Save JWT in localStorage
-      localStorage.setItem("token", result.email); // JWT
-      localStorage.setItem("user", result.accessToken); // user email
-      toast.success("Login successful!")
-      navigate("/board"); // if using react-router
+      // Save JWT in localStorage (must match isLoggedIn() implementation)
+      localStorage.setItem("token", result.accessToken);
+      localStorage.setItem("user", result.email); // user email
+      toast.success("Login successful!");
+      navigate("/board");
     } catch (err ) {
       console.error(err);
       toast.error("Login failed!")
