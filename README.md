@@ -1,73 +1,144 @@
-# React + TypeScript + Vite
+# Todo App Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for the Todo Management System built with React, TypeScript, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- React Toastify
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Project Setup
 
-## Expanding the ESLint configuration
+## 1. Clone Repository
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone -b feature/frontend git@github.com:iuzaifa/todo-ap-spring.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Go to project folder:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd todo-ap-spring
 ```
+
+---
+
+## 2. Install Dependencies
+
+Using npm:
+
+```bash
+npm install
+```
+
+---
+
+## 3. Configure Environment Variables
+
+Create a `.env` file in the root directory.
+
+Example:
+
+```env
+VITE_API_URL=http://localhost:8080/api
+```
+
+Make sure your Spring Boot backend server is running on port `8080`.
+
+---
+
+## 4. Run Development Server
+
+```bash
+npm run dev
+```
+
+Application will run on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+# Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+# Backend Repository / Branch
+
+Backend code is available in the `main` branch.
+
+Frontend code is available in the `feature/frontend` branch.
+
+---
+
+# Required Software
+
+Make sure these are installed:
+
+- Node.js (Latest LTS recommended)
+- npm
+- Git
+
+---
+
+# Features
+
+- User Authentication
+- JWT Token Handling
+- Task Management
+- Protected Routes
+- Toast Notifications
+- Responsive UI
+
+---
+
+# Folder Structure
+
+```text
+src/
+ ├── api/
+ ├── components/
+ ├── pages/
+ ├── routes/
+ ├── utils/
+ ├── assets/
+ └── App.tsx
+```
+
+---
+
+# Available Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Production build
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
+```
+
+---
+
+# Author
+
+Abu Huzaifa
