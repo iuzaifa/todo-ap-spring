@@ -51,6 +51,7 @@ public class TaskServiceImpl implements TaskService {
         task.setStartDate(request.getStartDate());
         task.setEndDate(request.getEndDate());
         task.setActive(request.isActive());
+        task.setUpdatedAt(request.getUpdatedAt());
 
         Tasks updated = taskRepository.save(task);
         return toResponse(updated);
@@ -58,6 +59,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTask(Long id) {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
         taskRepository.deleteById(id);
     }
 
@@ -104,9 +107,13 @@ public class TaskServiceImpl implements TaskService {
             return toResponse(saved);
         }
 
+
+
+
     // Manual conversion helper
     private TaskResponse toResponse(Tasks task) {
         TaskResponse response = new TaskResponse();
+        response.setId(task.getId());
         response.setTitle(task.getTitle());
         response.setDescription(task.getDescription());
         response.setPriority(task.getPriority());
@@ -114,6 +121,10 @@ public class TaskServiceImpl implements TaskService {
         response.setStartDate(task.getStartDate());
         response.setEndDate(task.getEndDate());
         response.setActive(task.isActive());
+        response.setUpdatedAt(task.getUpdatedAt());
         return response;
     }
+
+
+
 }

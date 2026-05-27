@@ -40,8 +40,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private PasswordEncoder encoder;
 
-//    @Autowired
-//    private TokenBlacklistService tokenBlacklistService;
 
 
 
@@ -57,6 +55,7 @@ public class AuthServiceImpl implements AuthService {
                         new RuntimeException("Default role not found"));
 
         User u = new User();
+        u.setDesignation(String.valueOf(ERole.ROLE_USER));
         u.setFullName(request.getFullName());
         u.setEmail(request.getEmail());
         u.setPassword(encoder.encode(request.getPassword()));

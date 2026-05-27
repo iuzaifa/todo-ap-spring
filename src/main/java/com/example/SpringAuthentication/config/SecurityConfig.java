@@ -57,18 +57,6 @@ public class SecurityConfig {
                 .build();
     }
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
-//        return httpSecurity.csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(request -> request
-//                        .requestMatchers("login", "/register", "/api/v1/add/newrole").permitAll()
-//                        .anyRequest().authenticated()).
-//                httpBasic(Customizer.withDefaults()).
-//                sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
-
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

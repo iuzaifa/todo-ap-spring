@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,5 +22,6 @@ public class TaskResponse {
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean active;
+    private LocalDateTime updatedAt;
 }
 

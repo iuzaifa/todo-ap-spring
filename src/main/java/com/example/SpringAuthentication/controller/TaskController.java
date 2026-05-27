@@ -3,11 +3,13 @@ package com.example.SpringAuthentication.controller;
 import com.example.SpringAuthentication.dto.TaskRequest;
 import com.example.SpringAuthentication.dto.TaskResponse;
 import com.example.SpringAuthentication.service.TaskService;
+import com.example.SpringAuthentication.service.serviceImpl.AnalyticsServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:5173") // allow your frontend
 @RestController
@@ -15,12 +17,14 @@ import java.util.List;
 public class TaskController {
 
     private final TaskService taskService;
+    private final AnalyticsServiceImpl analyticsService;
 
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService, AnalyticsServiceImpl analyticsService) {
         this.taskService = taskService;
+        this.analyticsService = analyticsService;
     }
 
-//    /tasks/add
+    // /tasks/add
     @PostMapping("/add")
     public TaskResponse create(@RequestBody TaskRequest request) {
         return taskService.createTask(request);
@@ -50,6 +54,11 @@ public class TaskController {
     public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest request) {
         TaskResponse response = taskService.addNewByUser(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/analytics")
+    public ResponseEntity<Map<String, Object>> getAnalytics() {
+        return ResponseEntity.ok(analyticsService.getAnalytics());
     }
 
 
