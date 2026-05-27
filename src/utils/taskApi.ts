@@ -13,6 +13,7 @@ export interface TaskResponse {
   startDate: string; 
   endDate: string;
   active: boolean;
+  updatedAt : string
 }
 
 export interface CreateTask {
@@ -25,6 +26,7 @@ export interface CreateTask {
   startDate: string; 
   endDate: string;
   active: boolean;
+  updatedAt : string
 }
 
 
@@ -76,3 +78,41 @@ export const updateTaskApi = async ( id: number): Promise<void> => {
   );
 };
 
+// /tasks/analytics
+
+// Analytics.ts
+export interface Analytics {
+  productivity: number;
+  pending: number;
+  totalTasks: number;
+  completed: number;
+}
+
+
+export const getAnalytics = async (): Promise<Analytics> => {
+  const token = localStorage.getItem("token");
+  const response = await api.get<Analytics>("/tasks/analytics", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export interface RecentActivity {
+  title : string
+  description : string;
+  status : string,
+  updatedAt : string
+}
+
+
+export const getRecentActivity = async (): Promise<RecentActivity[]>  => {
+  const token = localStorage.getItem("token");
+  const response = await api.get<RecentActivity[]>("/tasks/get-all-tasks", {
+    headers: {
+      Authorization: `Bearer ${token}`, // Clean, manual fallback context wrapper
+    },
+  });
+  return response.data;
+}

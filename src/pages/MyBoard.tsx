@@ -254,7 +254,7 @@ const MyBoard = () => {
           <div>
             <h1 className="text-3xl font-bold text-slate-900">My Board</h1>
             <p className="mt-1 text-sm text-slate-500">
-              Manage your daily workflow and tasks
+              Manage your daily workflow and tasks 
             </p>
           </div>
           <button

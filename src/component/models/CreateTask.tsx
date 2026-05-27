@@ -17,7 +17,8 @@ export const CreateTaskModel = ({ onClose }: CreateTaskProps) => {
         status: "",
         startDate: "",
         endDate: "",
-        active: false,
+        active: false,  
+        updatedAt: new Date().toISOString()
     });
 
      const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

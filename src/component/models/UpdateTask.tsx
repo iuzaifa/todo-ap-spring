@@ -214,7 +214,7 @@
 //   );
 // };
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import type { CreateTask, TaskResponse } from "../../utils/taskApi";
 import api from "../../api/api";
 import { toast } from "react-toastify";
@@ -232,6 +232,9 @@ const emptyForm: CreateTask = {
   startDate: "",
   endDate: "",
   active: false,
+  updatedAt: new Date().toISOString()
+
+
 };
 
 export const UpdateTaskModel = ({ task, onClose }: UpdateTaskModelProps) => {
@@ -245,6 +248,8 @@ export const UpdateTaskModel = ({ task, onClose }: UpdateTaskModelProps) => {
           startDate: task.startDate || "",
           endDate: task.endDate || "",
           active: task.active ?? false,
+          updatedAt : task.updatedAt ?? new Date().toISOString()
+
         }
       : emptyForm
   );
